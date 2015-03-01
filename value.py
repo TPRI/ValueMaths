@@ -25,6 +25,8 @@ class Value(object):
         else:
             self.from_lists(*args)
 
+
+
     def to_base_units(self, data):
         # load the unit definitions
         units = yaml.load(open(os.path.join(os.path.dirname(__file__), 'unit_defs.yml')))
@@ -122,6 +124,20 @@ class Value(object):
     # Check dimensions match
     def dimension_match(self, other):
         return self.base_units == other.base_units
+
+    def to(self, unit_name):
+
+        new_unit = Value(unit_name)
+
+        if self.dimension_match(new_unit) is False:
+            raise(IncompatibleUnitsError())
+        else:
+            num = self.coefficient / new_unit.coefficient
+
+            s_num = str(num)
+            s_unit = unit_name
+
+        return s_num + ' ' + s_unit
 
     # Return a string
     def __str__(self):
