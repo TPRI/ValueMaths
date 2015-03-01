@@ -89,8 +89,27 @@ class Value(object):
         return self.__mul__(other)
 
     # Add (Check unit compatibility)
-    def add(self, other):
-        pass
+    def add(self, *others):
+
+        result_base = dict(self.base_units)
+        result_coeff = self.coefficient
+
+        # Convert arguments to Values first if they are constants or integers
+        others = map(Value, others)
+
+        for another in others:
+            if self.dimension_match(another) is False:
+                raise(IncompatibleUnitsError())
+            else:
+                result_coeff += another.coefficient
+
+        return Value(result_base, result_coeff)
+
+    def __add__(self, other):
+        return self.add(other)
+
+    def __radd__(self, other):
+        return self.__add__(other)
 
     # Equality
     def equality(self, other):
@@ -99,6 +118,10 @@ class Value(object):
 
     def __eq__(self, other):
         return self.equality(other)
+
+    # Check dimensions match
+    def dimension_match(self, other):
+        return self.base_units == other.base_units
 
     # Return a string
     def __str__(self):
@@ -121,3 +144,6 @@ class Value(object):
         else:
             return str(self.coefficient) + '' + prod
 
+
+class IncompatibleUnitsError(Exception):
+    pass
