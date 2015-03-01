@@ -29,9 +29,21 @@ def test_read_value():
     assert_equal(m.base_units,{'A': 0, 'kg': 0, 'k': 0, 'm': 1, 'cd': 0, 's': 0, 'mol': 0})
 
 def test_equality_simple():
-     m = Value('metre')
-     km = Value('kilometre')
-     j = Value('joule')
-     assert_true(m == m)
-     assert_false(m == km)
-     assert_false(m == j)
+    m = Value('metre')
+    km = Value('kilometre')
+    j = Value('joule')
+    assert_true(m == m)
+    assert_false(m == km)
+    assert_false(m == j)
+
+def test_multipication_simple():
+    m = Value('metre')
+    km = Value('kilometre')
+    per_s = Value({'second':-1})
+    ten = 10*m
+    area = km*ten
+    velocity = ten * per_s
+    assert_equal(velocity.base_units,{'A': 0, 'kg': 0, 'k': 0, 'm': 1, 'cd': 0, 's': -1, 'mol': 0})
+    assert_equal(velocity.coefficient,10)
+    assert_equal(area.base_units,{'A': 0, 'kg': 0, 'k': 0, 'm': 2, 'cd': 0, 's': 0, 'mol': 0})
+    assert_equal(area.coefficient,10000)
