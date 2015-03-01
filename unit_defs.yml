@@ -1,0 +1,116 @@
+# Base SI units
+metre:
+  num: 1
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+kilogram:
+  num: 1
+  base:
+      m: 0
+      kg: 1
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+second:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 1
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+ampere:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 1
+      k: 0
+      cd: 0
+      mol: 0
+kelvin:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 0
+      k: 1
+      cd: 0
+      mol: 0
+candela:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 1
+      mol: 0
+mol:
+  num: 1
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 1
+
+
+# Some other lengths
+kilometre:
+  num: 1000
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+mile:
+  num: 1609.344
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+
+# Some others
+joule:
+  num: 1
+  base:
+      m: 2
+      kg: 1
+      s: -2
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+calorie:
+  num: 4.18400
+  base:
+      m: 2
+      kg: 1
+      s: -2
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
