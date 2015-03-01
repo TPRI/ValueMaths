@@ -45,7 +45,6 @@ class Value(object):
             for key, value in new_base.items():
                 self.base_units[key] += new_base[key]*exponent
 
-
     # lead int 
     def from_constant(self, constant):
         self.coefficient = constant
@@ -69,7 +68,25 @@ class Value(object):
 
     # Multiply
     def multiply(self, *others):
-        pass
+
+        result_base = dict(self.base_units)
+        result_coeff = self.coefficient
+
+        # Convert arguments to Values first if they are constants or integers
+        others = map(Value, others)
+        
+        for another in others:
+            for key, value in another.base_units.iteritems():
+                result_base[key] += another.base_units[key]
+                    
+            result_coeff *= another.coefficient
+        return Value(result_base, result_coeff)
+
+    def __mul__(self, other):
+        return self.multiply(other)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
 
     # Add (Check unit compatibility)
     def add(self, other):
