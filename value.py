@@ -14,7 +14,7 @@ class Value(object):
         # Check the type of lead
         if type(lead) == type(self):
             # Copy constructor
-            self.data = dict(lead.data)
+            self.data = dict(lead.data)  # TODO check behavior
             self.coefficient = lead.coefficient
         elif type(lead) == int:
             self.from_constant(lead)
@@ -25,6 +25,9 @@ class Value(object):
         else:
             self.from_lists(*args)
 
+        self.to_base_units()
+
+    def to_base_units(self):
         # load the unit definitions
         units = yaml.load(open(os.path.join(os.path.dirname(__file__), 'unit_defs.yml')))
 
@@ -67,8 +70,29 @@ class Value(object):
                      in zip(symbols, powers)}
 
     # Multiply
-    def multiply(self, other):
-        pass
+    def multiply(self, *others):
+
+        result_data = dict(self.data)
+        result_coeff = self.coefficient
+
+        # Convert arguments to Terms first if they are
+        # constants or integers
+        others = map(Value, others)
+        for another in others:
+            for symbol, exponent in another.data.iteritems():
+                if symbol in result_data:
+                    result_data[symbol] += another.data[symbol]
+                else:
+                    result_data[symbol] = another.data[symbol]
+            result_coeff *= another.coefficient
+        return Value(result_data, result_coeff)
+
+
+    def __mul__(self, other):
+        return self.multiply(other)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
 
     # Add (Check unit compatibility)
     def add(self, other):
