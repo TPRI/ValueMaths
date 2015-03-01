@@ -9,10 +9,18 @@ class Value(object):
         # reads different data types
 
     # Multiply
+    def multiply(self, other):
+        pass
 
     # Add (Check unit compatibility)
+    def add(self, other):
+        pass
 
     # Equality
+    def equality(self, other):
+        pass
 
     # __str__
+    def __str__(self):
+        pass
 
