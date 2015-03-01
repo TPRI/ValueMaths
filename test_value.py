@@ -28,7 +28,10 @@ def test_read_value():
     m = Value(x)
     assert_equal(m.base_units,{'A': 0, 'kg': 0, 'k': 0, 'm': 1, 'cd': 0, 's': 0, 'mol': 0})
 
-# def test_str_units():
-#     m = Value('metre')
-#     km = Value('kilometre')
-#     assert_equal(j.__str__(),'1 kg  m^2  s^-2 ')
+def test_equality_simple():
+     m = Value('metre')
+     km = Value('kilometre')
+     j = Value('joule')
+     assert_true(m == m)
+     assert_false(m == km)
+     assert_false(m == j)
