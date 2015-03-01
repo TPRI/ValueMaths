@@ -22,6 +22,25 @@ class Value(object):
         else:
             self.from_lists(*args)
 
+        # load the unit definitions
+        units = yaml.load(open(os.path.join(os.path.dirname(__file__), 'unit_defs.yml')))
+
+        # Initialise the base units
+        self.base_units = {'m': 0, 'kg': 0, 's': 0, 'A': 0, 'k': 0, 'cd': 0, 'mol': 0}
+
+        # Convert symbol,exponent in data into base units
+        for symbol, exponent in self.data.iteritems():
+            new_unit = units[symbol]
+            new_base = new_unit['base']
+            new_num = new_unit['num']
+
+            # Multiply coefficient by unit number^exponent
+            self.coefficient *= pow(new_num, exponent)
+
+            # Add new_base to base_units
+            for key, value in new_base.items():
+                self.base_units[key] += new_base[key]*exponent
+
 
     # lead int -> constant
     def from_constant(self, constant):
