@@ -1,4 +1,7 @@
 # A class to implement a value/quantity that consists of a number and a unit
+import os
+import yaml
+
 
 class Value(object):
 
@@ -72,8 +75,9 @@ class Value(object):
         pass
 
     # Equality
-    def equality(self, other):
-        pass
+    def __eq__(self, other):
+        return (self.base_units == other.base_units) and\
+               (self.coefficient == other.coefficient)
 
     # Return a string
     def __str__(self):
@@ -93,8 +97,6 @@ class Value(object):
         if not prod:
             # if empty string (i.e. no units)
             return str(self.coefficient)
-        if self.coefficient == 1:
-            return prod
         else:
-            return str(self.coefficient) + ' ' + prod
+            return str(self.coefficient) + '' + prod
 
