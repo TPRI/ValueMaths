@@ -75,9 +75,12 @@ class Value(object):
         pass
 
     # Equality
-    def __eq__(self, other):
+    def equality(self, other):
         return (self.base_units == other.base_units) and\
                (self.coefficient == other.coefficient)
+
+    def __eq__(self, other):
+        return self.equality(other)
 
     # Return a string
     def __str__(self):
