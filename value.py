@@ -43,7 +43,7 @@ class Value(object):
         self.coefficient = coefficient
         self.data = {symbol: exponent for symbol, exponent
                      in zip(symbols, powers)}
-            
+
     # Multiply
     def multiply(self, other):
         pass
