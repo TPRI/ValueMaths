@@ -2,6 +2,7 @@
 
 # Imports
 from value import Value
+from value import IncompatibleUnitsError
 from nose.tools import assert_equal, assert_raises, assert_true, assert_false
 
 def test_not_in_unit_defs():
@@ -47,3 +48,20 @@ def test_multipication_simple():
     assert_equal(velocity.coefficient,10)
     assert_equal(area.base_units,{'A': 0, 'kg': 0, 'k': 0, 'm': 2, 'cd': 0, 's': 0, 'mol': 0})
     assert_equal(area.coefficient,10000)
+
+def test_dimension_match():
+    joule = Value('joule')
+    calorie = Value('calorie')
+    hour = Value('hour')
+    assert_true(joule.dimension_match(calorie))
+    assert_false(joule.dimension_match(hour))
+
+def test_add():
+    m = Value('metre')
+    km = Value('kilometre')
+    s = Value('s')
+    dist = m + km
+    assert_equal(dist.base_units, {'A': 0, 'kg': 0, 'k': 0, 'm': 1, 'cd': 0, 's': 0, 'mol': 0})
+    assert_equal(dist.coefficient, 1001)
+    with assert_raises(IncompatibleUnitsError):
+        5*m +2*s
