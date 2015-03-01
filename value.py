@@ -75,7 +75,26 @@ class Value(object):
     def equality(self, other):
         pass
 
-    # __str__
+    # Return a string
     def __str__(self):
-        pass
+        def unit_string(unit, power):
+            if power == 1:
+                return unit
+            elif power == 0:
+                return''
+            else:
+                return unit + '^' + str(power)
+
+        unit_strings = [unit_string(unit, power)
+                          for unit, power in self.base_units.iteritems()]
+
+        prod = ' '.join(unit_strings)
+
+        if not prod:
+            # if empty string (i.e. no units)
+            return str(self.coefficient)
+        if self.coefficient == 1:
+            return prod
+        else:
+            return str(self.coefficient) + ' ' + prod
 
