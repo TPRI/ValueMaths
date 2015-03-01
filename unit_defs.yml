@@ -69,6 +69,76 @@ mol:
       k: 0
       cd: 0
       mol: 1
+m:
+  num: 1
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+kg:
+  num: 1
+  base:
+      m: 0
+      kg: 1
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+s:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 1
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+A:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 1
+      k: 0
+      cd: 0
+      mol: 0
+k:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 0
+      k: 1
+      cd: 0
+      mol: 0
+cd:
+  num: 1
+  base:
+      m: 0
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 1
+      mol: 0
+mol:
+  num: 1
+  base:
+      m: 1
+      kg: 0
+      s: 0
+      A: 0
+      k: 0
+      cd: 0
+      mol: 1
 
 
 # Some other lengths
@@ -93,7 +163,7 @@ mile:
       cd: 0
       mol: 0
 
-# Some others
+# Some energies
 joule:
   num: 1
   base:
@@ -110,6 +180,28 @@ calorie:
       m: 2
       kg: 1
       s: -2
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+
+# Some times
+minute:
+  num: 60
+  base:
+      m: 0
+      kg: 0
+      s: 1
+      A: 0
+      k: 0
+      cd: 0
+      mol: 0
+hour:
+  num: 3600
+  base:
+      m: 0
+      kg: 0
+      s: 1
       A: 0
       k: 0
       cd: 0

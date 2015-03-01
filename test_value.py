@@ -65,3 +65,8 @@ def test_add():
     assert_equal(dist.coefficient, 1001)
     with assert_raises(IncompatibleUnitsError):
         5*m +2*s
+
+def test_to():
+    minute = Value('minute')
+    seconds = Value('second')
+    assert_equal((60*seconds).to('minute'), '1 minute')
